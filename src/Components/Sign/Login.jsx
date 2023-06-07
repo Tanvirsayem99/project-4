@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaSpinner } from 'react-icons/fa';
+import useAxiosSecure from "../../API/useAxiosSecure";
 const Login = () => {
+  const [axiosSecure] = useAxiosSecure();
     const {googleSignIn, loginUser} = useContext(AuthContext)
     const [show, setShow] = useState(true);
     const [spin, setSpin] = useState(false)
@@ -29,8 +31,12 @@ const Login = () => {
   const handleGoogle = () =>{
     setSpin(true)
     googleSignIn()
-    .then(result =>{
-        
+    .then(data =>{
+      const email = data.user.email;
+      const res = axiosSecure.put(`/users/${email}`,{email : email,})
+      .then(res =>{
+          console.log(res)
+      })
         setSpin(false)
     })
     .catch(err =>{

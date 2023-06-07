@@ -1,9 +1,12 @@
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
 
 
 const Shared = () => {
     return (
         <div>
-            this is shared
+            <Navbar></Navbar>
+            <Outlet></Outlet>
         </div>
     );
 };

@@ -24,7 +24,7 @@ const Register = () => {
             if(data){
                 setSpin(false)
                 const email = data.user.email;
-                const result = axiosSecure.put(`/users/${email}`,{email : email, role: 'student'})
+                const result = axiosSecure.put(`/users/${email}`,{email : email,})
                 .then(result =>{
                     console.log(result)
                 })

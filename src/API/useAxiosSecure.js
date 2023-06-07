@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
-// const { default: axios } = require("axios");
+
+
 
 
 const axiosSecure = axios.create({
@@ -29,7 +30,7 @@ const {logOut} = useContext(AuthContext)
             }
             return Promise.reject(error)
         })
-    },[logOut, axiosSecure, navigate])
+    },[logOut, navigate])
 
     return [axiosSecure]
 }
