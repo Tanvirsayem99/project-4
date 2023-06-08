@@ -15,9 +15,9 @@ const InstructorBoard = () => {
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
     
-      <h1>Welcome to Admin Dashboard</h1>
-      <NavLink to='/adminDashboard/class'>Mange Classes</NavLink>
-            <NavLink to='/adminDashboard/adUsers'>Mange Users</NavLink>
+      <h1>Welcome to Instructor Dashboard</h1>
+      <NavLink to='/instructorDashboard/addclass'>Add a Class</NavLink>
+            <NavLink to='/instructorDashboard/myclass'>My Classes</NavLink>
     </ul>
   
   </div>

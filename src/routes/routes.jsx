@@ -4,7 +4,9 @@ import {
 import AdminClasses from "../Components/Dashboard/Admins/AdminClasses";
 import AdminSideBar from "../Components/Dashboard/Admins/AdminSideBar";
 import AdminUsers from "../Components/Dashboard/Admins/AdminUsers";
+import AddClass from "../Components/Dashboard/Instructors/AddClass";
 import InstructorBoard from "../Components/Dashboard/Instructors/InstructorBoard";
+import MyClass from "../Components/Dashboard/Instructors/MyClass";
 import StudentBoard from "../Components/Dashboard/Students/StudentBoard";
 import Home from "../Components/Home/Home";
 import Shared from "../Components/shared/Shared";
@@ -52,7 +54,17 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
   },
     {
         path: '/instructorDashboard',
-        element: <InstructorPrivate><InstructorBoard></InstructorBoard></InstructorPrivate>
+        element: <InstructorPrivate><InstructorBoard></InstructorBoard></InstructorPrivate>,
+        children:[
+          {
+            path: 'addclass',
+            element: <AddClass></AddClass>
+          },
+          {
+            path: 'myclass',
+            element: <MyClass></MyClass>
+          },
+        ]
     },
     {
         path: '/userDashboard',
