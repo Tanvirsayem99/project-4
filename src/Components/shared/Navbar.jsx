@@ -29,7 +29,7 @@ const Navbar = () => {
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
       <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/instructors'>Instructors</NavLink></li>
-            <li><NavLink to='/classes'>Classes</NavLink></li>
+            <li><NavLink to='/class'>Classes</NavLink></li>
             <li><NavLink to='/login'>Login</NavLink></li>
             {user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}
             {isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
@@ -43,7 +43,7 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1">
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/instructors'>Instructors</NavLink></li>
-            <li><NavLink to='/classes'>Classes</NavLink></li>
+            <li><NavLink to='/class'>Classes</NavLink></li>
             <li><NavLink to='/login'>Login</NavLink></li>
             {user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}
             {isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}

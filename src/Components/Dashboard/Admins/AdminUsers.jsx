@@ -54,8 +54,8 @@ const AdminUsers = () => {
         <td className='indicator'>{singleUser?.email}{ user?.email === singleUser.email && <p className='indicator-item badge badge-primary'>Me</p>}</td>
         <td>{singleUser?.role? singleUser.role : 'student'}</td>
         <td className="flex gap-5">
-        <div className="btn btn-success" disabled={singleUser.role === 'admin'&& true} onClick={() =>handleAdmin(singleUser._id)}>Make admin</div>
-        <div className="btn btn-success" disabled={singleUser.role === 'instructor'&& true} onClick={() =>handleInstructor(singleUser._id)}>Make insTructor</div>
+        <div className="btn btn-success" disabled={singleUser.role === 'admin' || singleUser.role === 'instructor' && true} onClick={() =>handleAdmin(singleUser._id)}>Make admin</div>
+        <div className="btn btn-success" disabled={singleUser.role === 'admin' || singleUser.role === 'instructor' && true} onClick={() =>handleInstructor(singleUser._id)}>Make insTructor</div>
         </td>
                 </tr>))
             }

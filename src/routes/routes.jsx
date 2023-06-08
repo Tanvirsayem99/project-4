@@ -7,6 +7,9 @@ import AdminUsers from "../Components/Dashboard/Admins/AdminUsers";
 import AddClass from "../Components/Dashboard/Instructors/AddClass";
 import InstructorBoard from "../Components/Dashboard/Instructors/InstructorBoard";
 import MyClass from "../Components/Dashboard/Instructors/MyClass";
+import AllClasses from "../Components/Dashboard/Students/AllClasses";
+import MyEnrolledClasses from "../Components/Dashboard/Students/MyEnrolledClasses";
+import SelectedClasses from "../Components/Dashboard/Students/SelectedClasses";
 import StudentBoard from "../Components/Dashboard/Students/StudentBoard";
 import Home from "../Components/Home/Home";
 import Shared from "../Components/shared/Shared";
@@ -23,7 +26,11 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
         {
           path: '/',
           element: <Home></Home>
-        }
+        },
+        {
+          path: '/class',
+          element: <AllClasses></AllClasses>
+        },
       ],
     },
     {
@@ -68,6 +75,16 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
     },
     {
         path: '/userDashboard',
-        element: <StudentBoard></StudentBoard>
+        element: <StudentBoard></StudentBoard>,
+        children:[
+          {
+            path: 'selectedClass',
+            element: <SelectedClasses></SelectedClasses>
+          },
+          {
+            path: 'enrolledClass',
+            element: <MyEnrolledClasses></MyEnrolledClasses>
+          }
+        ]
     }
   ]);

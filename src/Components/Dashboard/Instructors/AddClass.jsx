@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { imgUpload } from "../../../API/imgApi";
+import useAxiosSecure from "../../../API/useAxiosSecure";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const AddClass = () => {
+    const {user} = useContext(AuthContext)
+    const [axiosSecure] = useAxiosSecure()
     const [imageName, setImageName] = useState('Upload image')
     const handleImageChange = image =>{
         setImageName(image.name)
@@ -17,33 +22,23 @@ const AddClass = () => {
         const seats = form.seats.value;
         const price = form.price.value;
 
-        const datts = {
-            name,
-            image,
-            instructorName,
-            instructorEmail,
-            seats,
-            price,
-        }
+        
+        
         
         imgUpload(image).then(data =>{
             const imgLink = data.data.display_url
+            axiosSecure.post(`/addClass/${user?.email}`, {name : name,image : imgLink, 
+                instructorName : instructorName, instructorEmail : instructorEmail,
+                seats: seats,price : price, status: 'pending',})
         })
     }
     
     
     return (
         <div>
-            <form onSubmit={handleClassData} action="">
-                <input type="text" name="name" id="" />
-                <input type="text" name="instructorName" id="" />
-                <input type="text" name="instructorEmail" id="" />
-                <input type="text" name="seats" id="" />
-                <input type="text" name="price" id="" />
-                <input type="submit" value="Add Class" name="" id="" />
-
-
-            <div className='flex flex-col w-max mx-auto text-center border border-white px-10 py-2 border-dashed '>
+            <form onSubmit={handleClassData} action="" className="grid gap-5 w-96">
+                <input type="text" name="name" id="" className="bg-slate-200 py-2  pl-2" placeholder="Enter Class name" required/>
+                <div className='flex flex-col w-max mx-auto text-center border border-white px-10 py-2 border-dashed '>
                   <label>
                     <input
                       onChange={(event)=>handleImageChange(event.target.files[0])}
@@ -53,12 +48,21 @@ const AddClass = () => {
                       id='image'
                       accept='image/*'
                       hidden
+                      required
                     />
                     <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
                       {imageName}
                     </div>
                   </label>
                 </div>
+                <input type="text" name="instructorName" id="" className="bg-slate-200 py-2 pl-2" value={user?.displayName} readOnly required/>
+                <input type="text" name="instructorEmail" id="" className="bg-slate-200 py-2 pl-2" value={user?.email}  readOnly required/>
+                <input type="text" name="seats" id="" className="bg-slate-200 py-2 pl-2" placeholder="Enter Available seats" required/>
+                <input type="text" name="price" id="" className="bg-slate-200 py-2 pl-2" placeholder="Enter price" required />
+                <input type="submit" value="Add Class" name="" id="" className="bg-slate-200 py-2 pl-2" />
+
+
+            
             </form>
             
         </div>

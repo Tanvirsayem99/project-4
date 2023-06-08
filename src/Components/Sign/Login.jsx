@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosSecure from "../../API/useAxiosSecure";
@@ -10,6 +10,9 @@ const Login = () => {
     const {googleSignIn, loginUser} = useContext(AuthContext)
     const [show, setShow] = useState(true);
     const [spin, setSpin] = useState(false)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
   const {
     register,
     handleSubmit,
@@ -23,6 +26,7 @@ const Login = () => {
     .then(res => {
       console.log(res)
         setSpin(false)
+        navigate(from, {replace:true})
     })
     .catch(err =>{
         console.log(err)
@@ -36,6 +40,7 @@ const Login = () => {
       axiosSecure.post('/user',{email : email,})
       .then(res =>{
           console.log(res)
+          navigate(from, {replace:true})
       })
         setSpin(false)
     })
