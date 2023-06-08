@@ -21,7 +21,7 @@ const Login = () => {
     const {password} = data;
     loginUser(email, password)
     .then(res => {
-        
+      console.log(res)
         setSpin(false)
     })
     .catch(err =>{
@@ -33,7 +33,7 @@ const Login = () => {
     googleSignIn()
     .then(data =>{
       const email = data.user.email;
-      const res = axiosSecure.put(`/users/${email}`,{email : email,})
+      axiosSecure.post('/user',{email : email,})
       .then(res =>{
           console.log(res)
       })

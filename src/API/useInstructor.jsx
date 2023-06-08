@@ -8,23 +8,21 @@ const useInstructor = () => {
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
 
-    const {data: insTructor, isLoading: isAdminLoading} = useQuery({
-        queryKey:['Isinstructor', user?.email],
+    const {data: insTructor, isLoading: isInstructorLoading} = useQuery({
+        queryKey:['Instructor', user?.email],
         enabled: !loader,
         queryFn: async () =>{
             const res = await axiosSecure.get(`/user/instructor/${user?.email}`);
             
-            if(res.data.role === 'instructor'){
-                return res.data.role;
-            }
-            else{
-                return ''
-            }
+            
+                return res.data.instructor;
+            
+            
         }
         
     })
 
-    return [insTructor, isAdminLoading];
+    return [insTructor, isInstructorLoading];
 };
 
 export default useInstructor;

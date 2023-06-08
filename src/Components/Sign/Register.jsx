@@ -6,7 +6,7 @@ import { FaSpinner } from 'react-icons/fa';
 import useAxiosSecure from "../../API/useAxiosSecure";
 const Register = () => {
     const [axiosSecure] = useAxiosSecure()
-    const {createUser, updateUser} = useContext(AuthContext)
+    const {createEmail, updateUser} = useContext(AuthContext)
     const [conErr, setConErr] = useState('')
     const [spin, setSpin] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,13 +18,13 @@ const Register = () => {
     const {Apassword} = data;
     const {image} = data;
     if(password === Apassword){
-        createUser(Email, password)
+        createEmail(Email, password)
         .then(data =>{
             console.log(data)
             if(data){
                 setSpin(false)
                 const email = data.user.email;
-                const result = axiosSecure.put(`/users/${email}`,{email : email,})
+                const result = axiosSecure.post('/user',{email : email,})
                 .then(result =>{
                     console.log(result)
                 })

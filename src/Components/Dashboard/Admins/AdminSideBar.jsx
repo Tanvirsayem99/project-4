@@ -1,10 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
 
-
-const InstructorBoard = () => {
-    return (
-        <div>
-            <div className="drawer lg:drawer-open">
+const AdminSideBar = () => {
+  return (
+    <div>
+        <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-center justify-center">
     <Outlet></Outlet>
@@ -16,14 +15,14 @@ const InstructorBoard = () => {
     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
     
       <h1>Welcome to Admin Dashboard</h1>
-      <NavLink to='/adminDashboard/class'>Mange Classes</NavLink>
-            <NavLink to='/adminDashboard/adUsers'>Mange Users</NavLink>
+      <NavLink to='/adminDashboard/class'>Manage Classes</NavLink>
+            <NavLink to='/adminDashboard/adUsers'>Manage Users</NavLink>
     </ul>
   
   </div>
 </div>
-        </div>
-    );
+    </div>
+  );
 };
 
-export default InstructorBoard;
+export default AdminSideBar;

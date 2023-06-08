@@ -6,11 +6,15 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const Navbar = () => {
-    const [admin] = useAdminSecure();
+  const {logOut, user} = useContext(AuthContext);
+    const [isAdmin] = useAdminSecure();
     const [insTructor] = useInstructor();
-
-    const {logOut, user} = useContext(AuthContext);
+    console.log(isAdmin)
     console.log(insTructor)
+
+
+
+    
     const hadleLogOut = () =>{
         logOut()
     }
@@ -28,9 +32,9 @@ const Navbar = () => {
             <li><NavLink to='/classes'>Classes</NavLink></li>
             <li><NavLink to='/login'>Login</NavLink></li>
             {user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}
-            {admin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
+            {isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
             {insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}
-            {user && <NavLink to='/userDashboard'>Dashboard</NavLink>}
+            {user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}
       </ul>
     </div>
     <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -42,9 +46,9 @@ const Navbar = () => {
             <li><NavLink to='/classes'>Classes</NavLink></li>
             <li><NavLink to='/login'>Login</NavLink></li>
             {user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}
-            {admin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
+            {isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
             {insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}
-            {user && <NavLink to='/userDashboard'>Dashboard</NavLink>}
+            {user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}
     </ul>
   </div>
   <div className="navbar-end">

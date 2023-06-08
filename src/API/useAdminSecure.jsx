@@ -8,23 +8,17 @@ const useAdminSecure = () => {
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
 
-    const {data: Admin, isLoading: isAdminLoading} = useQuery({
-        queryKey:['IsAdmin', user?.email],
+    const {data: isAdmin, isLoading: isAdminLoading} = useQuery({
+        queryKey:['isAdmin', user?.email],
         enabled: !loader,
         queryFn: async () =>{
             const res = await axiosSecure.get(`/user/admin/${user?.email}`);
-            if(res.data.role === 'admin'){
-                return res.data.role;
-            }
-            else{
-                return ''
-            }
-            
+                return res.data.admin;
         }
         
     })
 
-    return [Admin, isAdminLoading];
+    return [isAdmin, isAdminLoading];
 };
 
 export default useAdminSecure;

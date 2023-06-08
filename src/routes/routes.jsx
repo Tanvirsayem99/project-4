@@ -1,13 +1,17 @@
 import {
     createBrowserRouter,
   } from "react-router-dom";
-import AdminBoard from "../Components/Dashboard/Admins/AdminBoard";
+import AdminClasses from "../Components/Dashboard/Admins/AdminClasses";
+import AdminSideBar from "../Components/Dashboard/Admins/AdminSideBar";
+import AdminUsers from "../Components/Dashboard/Admins/AdminUsers";
 import InstructorBoard from "../Components/Dashboard/Instructors/InstructorBoard";
 import StudentBoard from "../Components/Dashboard/Students/StudentBoard";
 import Home from "../Components/Home/Home";
 import Shared from "../Components/shared/Shared";
 import Login from "../Components/Sign/Login";
 import Register from "../Components/Sign/Register";
+import AdminPrivate from "../ProtectedRoute/AdminPrivate";
+import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
 
  export const router = createBrowserRouter([
     {
@@ -18,23 +22,37 @@ import Register from "../Components/Sign/Register";
           path: '/',
           element: <Home></Home>
         }
-      ]
-    },
-    {
-        path: '/login',
-        element: <Login></Login>
-    },
-    {
-        path: '/register',
-        element: <Register></Register>
+      ],
     },
     {
         path: '/adminDashboard',
-        element: <AdminBoard></AdminBoard>
+        element: <AdminPrivate><AdminSideBar></AdminSideBar></AdminPrivate>,
+        children:[
+          // {
+          //   path: 'adminDashboard',
+          //   element: <p>hello</p>
+          // },
+          {
+            path: 'class',
+            element: <AdminClasses></AdminClasses>
+          },
+          {
+            path: 'adUsers',
+            element: <AdminUsers></AdminUsers>
+          }
+        ]
     },
     {
+      path: '/login',
+      element: <Login></Login>
+  },
+  {
+      path: '/register',
+      element: <Register></Register>
+  },
+    {
         path: '/instructorDashboard',
-        element: <InstructorBoard></InstructorBoard>
+        element: <InstructorPrivate><InstructorBoard></InstructorBoard></InstructorPrivate>
     },
     {
         path: '/userDashboard',
