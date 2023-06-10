@@ -44,22 +44,29 @@ const Register = () => {
     
     };
     return (
-        <div className="bg-slate-100 p-5 md:w-2/6 mx-auto mt-32 border-red-500 border">
-            <h1 className="text-center my-5 font-semibold text-3xl">Register</h1>
+        <div className="bg-slate-100 p-5 md:w-2/6 mx-auto mt-32 shadow-lg border">
+            <h1 className="text-center my-5 text-red-400 font-semibold text-3xl">Register</h1>
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5 w-full">
-      <input placeholder="Name" {...register("name", { required: true })} className="py-2 pl-2 outline-none" />
-      <input placeholder="Email" {...register("Email", { required: true })} className="py-2 pl-2 outline-none" />
-      <input placeholder="password" {...register("password", { required: true })} className="py-2 pl-2 outline-none" />
-      <input placeholder="Confirm Password" {...register("Apassword", { required: true })} className="py-2 pl-2 outline-none" />
+      <input placeholder="Name" {...register("name", { required: true })} className="py-2 pl-2 outline-none rounded-lg bg-red-100" />
+      <input placeholder="Email" {...register("Email", { required: true })} className="py-2 pl-2 outline-none bg-red-100" />
+      <input placeholder="password" {...register("password",{required: true,
+        minLength: 6,
+        maxLength: 20,
+        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/} )} className="py-2 pl-2 outline-none bg-red-100" />
+        {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
+        {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
+        {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
+        {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
+      <input placeholder="Confirm Password" {...register("Apassword", { required: true })} className="py-2 pl-2 outline-none bg-red-100" />
       {
         conErr && <p className="text-red-500">{conErr}</p>
       }
-      <input placeholder="image-url" {...register("image", { required: true })} className="py-2 pl-2 outline-none" />
+      <input placeholder="image-url" {...register("image", { required: true })} className="py-2 pl-2 outline-none bg-red-100" />
       {errors.exampleRequired && <span>This field is required</span>}
       
       {
-        spin ? <FaSpinner className="mx-auto text-3xl text-red-500"></FaSpinner> : <div className="text-center">
-        <input type="submit" value="Register" className="bg-transparent border border-red-500 hover:bg-red-500 px-10 py-2 hover:text-white" />
+        spin ? <FaSpinner className="mx-auto text-3xl text-red-500 animate-spin"></FaSpinner> : <div className="text-center">
+        <input type="submit" value="Register" className="hover:bg-transparent border text-white border-red-500 bg-red-500 px-10 py-2 hover:text-black" />
         </div>
       }
       

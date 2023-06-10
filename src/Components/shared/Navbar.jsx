@@ -13,8 +13,8 @@ const Navbar = () => {
         logOut()
     }
     return (
-        <div>
-            <div className="navbar bg-base-100">
+        <div className="">
+            <div className="navbar md:w-[91.7%]  bg-orange-500 bg-opacity-40 text-black md:text-white fixed z-10">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -24,7 +24,9 @@ const Navbar = () => {
       <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/instructors'>Instructors</NavLink></li>
             <li><NavLink to='/class'>Classes</NavLink></li>
-            <li><NavLink to='/login'>Login</NavLink></li>
+            {
+              !user && <li><NavLink to='/login'>Login</NavLink></li>
+            }
             <li>{user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}</li>
             <li>{isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}</li>
             <li>{insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}</li>
@@ -38,7 +40,9 @@ const Navbar = () => {
     <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/instructors'>Instructors</NavLink></li>
             <li><NavLink to='/class'>Classes</NavLink></li>
-            <li><NavLink to='/login'>Login</NavLink></li>
+            {
+              !user && <li><NavLink to='/login'>Login</NavLink></li>
+            }
             <li>{user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}</li>
             <li>{isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}</li>
             <li>{insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}</li>

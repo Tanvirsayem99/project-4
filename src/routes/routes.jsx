@@ -19,6 +19,7 @@ import Login from "../Components/Sign/Login";
 import Register from "../Components/Sign/Register";
 import AdminPrivate from "../ProtectedRoute/AdminPrivate";
 import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
+import PrivateRoute from "../ProtectedRoute/PrivateRoute";
 
  export const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
         },
         {
           path: '/class',
-          element: <AllClasses></AllClasses>
+          element: <PrivateRoute><AllClasses></AllClasses></PrivateRoute>
         },
         {
           path: '/instructors',
