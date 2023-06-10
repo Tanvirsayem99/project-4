@@ -42,24 +42,24 @@ const Login = () => {
           console.log(res)
           navigate(from, {replace:true})
       })
-        setSpin(false)
-    })
-    .catch(err =>{
-        setSpin(false)
-        console.log(err)
-    })
+      .catch(err => setSpin(false))
+    }).catch(err =>{
+      setSpin(false)
+      console.log(err)
+  })
+    
   }
 
   return (
-    <div className="bg-slate-100 p-5 md:w-2/6 mx-auto mt-32 border-red-500 border">
+    <div className=" p-5 md:w-2/6 mx-auto mt-32 Box">
         <h1 className="text-center my-5 font-semibold text-3xl">Login</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5 w-full">
-        <input placeholder="Email" {...register("email")} className="py-2 pl-2 outline-none" />
+        <input placeholder="Email" {...register("email")} className="py-2 pl-2 outline-none box-input rounded-lg" />
 
         <div className="relative w-full">
           <input
           placeholder="Password"
-            className="w-full py-2 pl-2 outline-none " 
+            className="w-full py-2 pl-2 outline-none box-input rounded-lg" 
             type={show? 'password' : 'text'}
             {...register("password", {
               required: "Password is required",
@@ -67,10 +67,6 @@ const Login = () => {
                 value: 6,
                 message: "Password must be at least 6 character long",
               },
-              //   pattern: {
-              //     value: /^[A-Za-z]+$/i,
-              //     message: 'Password must contain at least one uppercase letter and one special character',
-              //   },
             })}
           />
           <div className="absolute top-2 right-2">
@@ -109,14 +105,14 @@ const Login = () => {
         
 
         {
-        spin ? <FaSpinner className="mx-auto text-3xl text-red-500"></FaSpinner> : <div className="text-center">
-        <input type="submit" value="Login" className="bg-transparent border border-red-500 hover:bg-red-500 px-10 py-2 hover:text-white" />
+        spin ? <FaSpinner className="mx-auto text-3xl animate-spin text-red-500"></FaSpinner> : <div className="text-center">
+        <input type="submit" value="Login" className="hover:bg-transparent text-white border hover:border-red-500 bg-red-500 px-10 py-2 hover:text-black" />
         </div>
       }
         <p className="text-center">-----------------------------------------------------------</p>
         {
             spin? '' :<div className="text-center" onClick={handleGoogle}>
-            <span className="bg-transparent border border-red-500 hover:bg-red-500 px-10 py-2 hover:text-white">Continue with Google</span>
+            <span className="hover:bg-transparent border text-white hover:text-black bg-red-500 border-red-500  px-10 py-2 ">Continue with Google</span>
             </div>
         }
       </form>

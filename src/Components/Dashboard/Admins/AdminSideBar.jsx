@@ -7,16 +7,16 @@ const AdminSideBar = () => {
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-center justify-center">
     <Outlet></Outlet>
-    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button absolute top-0 right-0 lg:hidden">Open drawer</label>
   
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+    <ul className="menu p-4 w-80 h-full bg-orange-300 text-base-content">
     
-      <h1>Welcome to Admin Dashboard</h1>
-      <NavLink to='/adminDashboard/class'>Manage Classes</NavLink>
-            <NavLink to='/adminDashboard/adUsers'>Manage Users</NavLink>
+      <h1 className="text-center text-2xl">Welcome to Admin Dashboard</h1>
+      <li><NavLink to='/adminDashboard/class'>Manage Classes</NavLink></li>
+      <li><NavLink to='/adminDashboard/adUsers'>Manage Users</NavLink></li>
     </ul>
   
   </div>

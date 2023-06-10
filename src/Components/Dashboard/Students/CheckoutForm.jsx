@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../../API/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import './checkoutForm.css'
@@ -9,7 +10,7 @@ import './checkoutForm.css'
 // import {CardElement, Elements, useElements, useStripe} from '../../src';
 const CheckoutForm = ({item, exactId}) => {
     let updateSeats = exactId.seats -1;
-    console.log(updateSeats)
+    const [loading, setLoading] = useState(false)
     let updateStudent = exactId.student +1  ;
     console.log(updateStudent)
     const stripe = useStripe();
@@ -31,25 +32,17 @@ const CheckoutForm = ({item, exactId}) => {
   
     const handleSubmit = async (event) => {
       console.log(clientSecret)
-      // Block native form submission.
+      setLoading(true)
       event.preventDefault();
   
       if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
         return;
       }
-  
-      // Get a reference to a mounted CardElement. Elements knows how
-      // to find your CardElement because there can only ever be one of
-      // each type of element.
       const card = elements.getElement(CardElement);
   
       if (card == null) {
         return;
       }
-  
-      // Use your card Element with other Stripe.js APIs
       const {error, paymentMethod} = await stripe.createPaymentMethod({
         type: 'card',
         card,
@@ -80,19 +73,30 @@ const CheckoutForm = ({item, exactId}) => {
         console.log('[paymentIntent]', paymentIntent);
         if(paymentIntent.status === 'succeeded'){
           axiosSecure.post('/payment',{...exactId, transactionId: paymentIntent.id, date: new Date(),})
+         
           .then(res =>{
             if(res.data.insertedId){
               axiosSecure.delete(`/delete/${exactId._id}`);
               axiosSecure.put(`/seatsUpdate/${exactId.menuItem}`,{seats: updateSeats, student: updateStudent})
+              setLoading(false)
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
             }
           });
         }
       }
     };
-    
+    // if(loading){
+    //   return <span className="loading loading-bars loading-lg"></span>
+    // }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="my-5">
         <CardElement
           options={{
             style: {
@@ -112,9 +116,14 @@ const CheckoutForm = ({item, exactId}) => {
         {
           cardError && <p className="text-red-600">{cardError}</p>
         }
-        <button type="submit" disabled={!stripe}>
-          Pay
-        </button>
+        <div className="text-center">
+          {
+            loading? <span className="loading loading-bars loading-lg text-red-600"></span> : <button type="submit" className="bg-sky-500 px-10 py-2 text-white text-center" disabled={!stripe}>
+            Pay
+          </button>
+          }
+        
+        </div>
       </form>
     );
   };

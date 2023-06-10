@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import useAxiosSecure from '../../../API/useAxiosSecure'
 import { AuthContext } from '../../../Provider/AuthProvider';
 
@@ -7,12 +7,22 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 
 const AdminUsers = () => {
     const {user} = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
     const [axiosSecure] = useAxiosSecure()
     const {data: users =[], refetch} = useQuery(['users'], async ()=>{
+          setLoading(true)
         const res = await axiosSecure.get('/allUsers')
-        return res.data;
+        if(res.data){
+          setLoading(false)
+          return res.data;
+        }
     })
-    
+    if(loading){
+      return <span className="loading loading-dots loading-lg  md:w-44"></span>
+  }
+    if(users.length === '0'){
+      return <p className="text-center font-sans font-semibold text-4xl">No users available</p>
+  }
     const handleAdmin = (id) =>{
             refetch();
             axiosSecure.put(`/users/role/${id}`,{role: 'admin'})
@@ -30,11 +40,10 @@ const AdminUsers = () => {
     }
     
     return (
-        <div>
+        <div className='mt-16'>
             
              <div className="overflow-x-auto">
   <table className="table">
-    {/* head */}
     <thead>
       <tr>
         <th></th>

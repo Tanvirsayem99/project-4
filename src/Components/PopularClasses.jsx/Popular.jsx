@@ -10,9 +10,9 @@ const Popular = () => {
     })
     console.log(classes)
     return (
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-3 gap-10 my-10">
             {
-                classes.map(singleClass =>(<div key={singleClass._id} className="bg-slate-200 shadow-xl p-3">
+                classes.map(singleClass =>(<div key={singleClass._id} className=" Box p-3">
                     <img src={singleClass.image} alt="" className="w-full h-64" />
                     <div className="grid gap-3 mt-5">
                     <div className="flex justify-center gap-2"><b>Name: </b><p>{singleClass.name}</p></div>

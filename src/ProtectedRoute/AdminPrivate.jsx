@@ -9,7 +9,7 @@ const AdminPrivate = ({children}) => {
     const [admin, isAdminLoading] = useAdminSecure()
     const location = useLocation();
     if(loader || isAdminLoading){
-        return <p>hello world</p>
+        return <span className="loading loading-dots loading-lg text-center absolute left-2/4 top-52  md:w-44   mx-auto"></span>
     }
     if(user && admin){
         return children

@@ -56,8 +56,9 @@ const AddClass = () => {
     
     return (
         <div>
-            <form onSubmit={handleClassData} action="" className="grid gap-5 w-96">
-                <input type="text" name="name" id="" className="bg-slate-200 py-2  pl-2" placeholder="Enter Class name" required/>
+            <form onSubmit={handleClassData} action="" className="grid gap-5 md:w-[700px] w-[350px] mt-16 Box p-5">
+              <h1 className="text-center text-3xl mb-5">Add Class</h1>
+                <input type="text" name="name" id="" className=" py-2  pl-2 box-input" placeholder="Enter Class name " required/>
                 <div className='flex flex-col w-max mx-auto text-center border border-white px-10 py-2 border-dashed '>
                   <label>
                     <input
@@ -75,12 +76,12 @@ const AddClass = () => {
                     </div>
                   </label>
                 </div>
-                <input type="text" name="instructorName" id="" className="bg-slate-200 py-2 pl-2" value={user?.displayName} readOnly required/>
-                <input type="text" name="instructorEmail" id="" className="bg-slate-200 py-2 pl-2" value={user?.email}  readOnly required/>
-                <input type="text" name="seats" id="" className="bg-slate-200 py-2 pl-2" placeholder="Enter Available seats" required/>
-                <input type="text" name="price" id="" className="bg-slate-200 py-2 pl-2" placeholder="Enter price" required />
+                <input type="text" name="instructorName" id="" className="box-input py-2 pl-2" value={user?.displayName} readOnly required/>
+                <input type="text" name="instructorEmail" id="" className="box-input py-2 pl-2" value={user?.email}  readOnly required/>
+                <input type="text" name="seats" id="" className="box-input py-2 pl-2" placeholder="Enter Available seats" required/>
+                <input type="text" name="price" id="" className="box-input py-2 pl-2" placeholder="Enter price" required />
                 {
-                  loader?  <FaSpinner className="mx-auto text-3xl animate-spin text-red-500"></FaSpinner> : <input type="submit" value="Add Class" name="" id="" className="bg-slate-200 py-2 pl-2" />
+                  loader?  <FaSpinner className="mx-auto text-3xl animate-spin text-red-500"></FaSpinner> : <input type="submit" value="Add Class" name="" id="" className="bg-slate-200 cursor-pointer btn btn-outline btn-success py-2 pl-2" />
                 }
                 
 

@@ -11,27 +11,38 @@ const stripePromise = loadStripe(`${import.meta.env.VITE_stripe}`);
 
 const SelectedClasses = () => {
     const[exactId, setExactId] = useState('')
+    const [loading, setLoading] = useState(false)
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
     
     
     const {data: items =[], refetch} = useQuery(['users', user?.email], async ()=>{
+        setLoading(true)
         const res = await axiosSecure.get(`/selected/${user?.email}`)
-        return res.data;
+        if(res.data){
+            setLoading(false)
+            return res.data;
+        }
     })
+    if(loader){
+        return <span className="loading loading-dots loading-lg  md:w-44"></span>
+    }
     const handleDelete = id =>{
         axiosSecure.delete(`/delete/${id}`)
         refetch();
         refetch()
     }
-    if(loader){
-        return <p>loading</p>
+    if(loading){
+        return <span className="loading loading-dots loading-lg  md:w-44"></span>
+    }
+    if(items.length == '0'){
+        return <p className="text-center font-sans font-semibold text-4xl">Please Add Item First</p>
     }
     
     return (
         <div className="grid gap-10">
             {
-                items.map(item =>(<div key={item._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg">
+                items.map(item =>(<div key={item._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg h-20">
                     <img src={item.image} alt="" className="w-16 p-1" />
                     <p><b>Name: </b>{item.name}</p>
                     <p><b>Price: </b>{item.price}</p>

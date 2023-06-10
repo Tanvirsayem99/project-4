@@ -4,11 +4,11 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useAllUsersRole = () => {
     const [axiosSecure] = useAxiosSecure()
-    const {data: users =[], refetch} = useQuery(['users'], async ()=>{
+    const {data: users =[], refetch, isLoading} = useQuery(['users'], async ()=>{
         const res = await axiosSecure.get('/allUsers')
         return res.data;
     })
-    return [users, refetch]
+    return [users, refetch, isLoading]
 };
 
 export default useAllUsersRole;

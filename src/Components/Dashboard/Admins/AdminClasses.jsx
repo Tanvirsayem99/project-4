@@ -7,14 +7,27 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const AdminClasses = () => {
-    const {user} = useContext(AuthContext);
+    const {user, loader} = useContext(AuthContext);
+    const [loading, setLoading] = useState(false)
     const [axiosSecure] = useAxiosSecure();
     const [feedId, setFeedId] = useState('')
     const {data: classes =[], refetch} = useQuery(['classes'], async ()=>{
+        setLoading(true)
         const res = await axiosSecure.get(`/allClasses/${user?.email}`)
-        return res.data;
+        if(res.data){
+          setLoading(false)
+          return res.data;
+        }
     });
-
+    if(loading){
+      return <span className="loading loading-dots loading-lg  md:w-44"></span>
+  }
+  if(loader){
+      return <span className="loading loading-dots loading-lg  md:w-44"></span>
+  }
+  if(classes.length === '0'){
+      return <p className="text-center font-sans font-semibold text-4xl">No class available</p>
+  }
     const handleAprrove = (id) =>{
         refetch()
         axiosSecure.put(`/approve/${id}`,{status: 'approved'})
@@ -55,7 +68,7 @@ const AdminClasses = () => {
     
 
     return (
-        <div>
+        <div className="mt-16">
              <div className="overflow-x-auto">
   <table className="table">
     <thead>

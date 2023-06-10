@@ -7,15 +7,28 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const MyClass = () => {
-    const {user} = useContext(AuthContext);
+    const {user, loader} = useContext(AuthContext);
+    const [loading, setLoading] = useState(false)
     const [axiosSecure] = useAxiosSecure();
     const [upid, setUpId] = useState('')
 
     const {data: classes =[], refetch} = useQuery(['classes'], async ()=>{
+        setLoading(true)
         const res = await axiosSecure.get(`/instructorClasses/${user?.email}`)
-        return res.data;
+        if(res.data){
+          setLoading(false)
+          return res.data;
+        }
     });
-    console.log(classes)
+    if(loading){
+      return <span className="loading loading-dots loading-lg  md:w-44"></span>
+  }
+  if(loader){
+      return <span className="loading loading-dots loading-lg  md:w-44"></span>
+  }
+  if(classes.length === '0'){
+      return <p className="text-center font-sans font-semibold text-4xl">No Class Available</p>
+  }
     const handleSubmit = event =>{
       event.preventDefault();
       const form = event.target;
@@ -47,7 +60,8 @@ const MyClass = () => {
     
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-16">
+              <h1 className="text-center text-2xl my-5 ">My Classes</h1>
   <table className="table">
     <thead>
       <tr>
