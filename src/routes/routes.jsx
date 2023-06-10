@@ -1,6 +1,7 @@
 import {
     createBrowserRouter,
   } from "react-router-dom";
+import AllInstructor from "../Components/AllInstructor/AllInstructor";
 import AdminClasses from "../Components/Dashboard/Admins/AdminClasses";
 import AdminSideBar from "../Components/Dashboard/Admins/AdminSideBar";
 import AdminUsers from "../Components/Dashboard/Admins/AdminUsers";
@@ -9,6 +10,7 @@ import InstructorBoard from "../Components/Dashboard/Instructors/InstructorBoard
 import MyClass from "../Components/Dashboard/Instructors/MyClass";
 import AllClasses from "../Components/Dashboard/Students/AllClasses";
 import MyEnrolledClasses from "../Components/Dashboard/Students/MyEnrolledClasses";
+import PaymentHistory from "../Components/Dashboard/Students/PaymentHistory";
 import SelectedClasses from "../Components/Dashboard/Students/SelectedClasses";
 import StudentBoard from "../Components/Dashboard/Students/StudentBoard";
 import Home from "../Components/Home/Home";
@@ -31,6 +33,11 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
           path: '/class',
           element: <AllClasses></AllClasses>
         },
+        {
+          path: '/instructors',
+          element: <AllInstructor></AllInstructor>
+        },
+        
       ],
     },
     {
@@ -84,6 +91,10 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
           {
             path: 'enrolledClass',
             element: <MyEnrolledClasses></MyEnrolledClasses>
+          },
+          {
+            path: 'history',
+            element: <PaymentHistory></PaymentHistory>
           }
         ]
     }

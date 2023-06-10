@@ -25,7 +25,7 @@ const AllClasses = () => {
     },[])
     
     const handleBookings = item =>{
-        const {name, image, instructorName, price, seats, _id} = item;
+        const {name, image, instructorName, price, seats, _id, student} = item;
         if(!user){
             Swal.fire({
                 title: 'Please Login first?',
@@ -43,20 +43,20 @@ const AllClasses = () => {
 
         }
         else{
-            axiosSecure.post('/bookings',{menuItem: _id, name, image, instructorName, price, seats, email: user.email})
+            axiosSecure.post('/bookings',{menuItem: _id, name, image, instructorName, price, student, seats, email: user.email})
         }
     }
     return (
         <div className="grid grid-cols-3 gap-5 w-11/12 mx-auto">
             {
-                classes?.map(singleClass =>(<div key={singleClass._id} className="bg-neutral-300 w-full shadow-md ">
+                classes?.map(singleClass =>(<div key={singleClass._id} className={`${singleClass.seats <= 0? 'bg-red-500' : 'bg-neutral-300' } w-full shadow-md`}>
                     <img src={singleClass.image} alt="" className="p-2 h-96 w-full" />
                     <div className="grid mx-auto text-center">
                     <p><b>Class Name: </b>{singleClass.name}</p>
                     <p><b>Instructor Name: </b>{singleClass.instructorName}</p>
                     <p><b>Available seats: </b>{singleClass.seats}</p>
                     <p><b>price: </b>{singleClass.price}</p>
-                    <button className="btn btn-outline btn-success" onClick={() =>handleBookings(singleClass)} disabled={singleClass.seats === '0' || isAdmin || insTructor && true}>Select</button>
+                    <button className="btn btn-outline btn-success" onClick={() =>handleBookings(singleClass)} disabled={singleClass.seats == '0' || isAdmin || insTructor && true}>Select</button>
                     </div>
                 </div>))
             }

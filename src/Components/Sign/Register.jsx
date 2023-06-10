@@ -19,20 +19,15 @@ const Register = () => {
     const {image} = data;
     if(password === Apassword){
         createEmail(Email, password)
-        .then(data =>{
-            console.log(data)
+        .then(Data =>{
+            
             if(data){
                 setSpin(false)
-                const email = data.user.email;
-                const result = axiosSecure.post('/user',{email : email,})
-                .then(result =>{
-                    console.log(result)
-                })
-                
+                     
             }
             updateUser(name, image)
             .then(data =>{
-                console.log(data)
+                axiosSecure.post('/user',{email : Email, image:image , name: name})
                 
             })
 

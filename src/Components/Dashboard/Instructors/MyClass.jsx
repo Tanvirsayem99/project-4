@@ -15,6 +15,7 @@ const MyClass = () => {
         const res = await axiosSecure.get(`/instructorClasses/${user?.email}`)
         return res.data;
     });
+    console.log(classes)
     const handleSubmit = event =>{
       event.preventDefault();
       const form = event.target;
@@ -72,7 +73,7 @@ const MyClass = () => {
             <td>{singleClass?.status}</td>
             <td>{singleClass.price}</td>
             <td>{singleClass.seats}</td>
-            <td>{singleClass?.enrolled ? singleClass.enrolled : '0'}</td>
+            <td>{singleClass?.student ? singleClass.student : '0'}</td>
             <td>{singleClass?.feedback ? singleClass.feedback : ''}</td>
             <td><button> <label htmlFor="my_modal_6" className="btn" onClick={()=>setUpId(singleClass._id)}>update</label></button></td>
         </tr>))

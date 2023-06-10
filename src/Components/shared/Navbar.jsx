@@ -9,12 +9,6 @@ const Navbar = () => {
   const {logOut, user} = useContext(AuthContext);
     const [isAdmin] = useAdminSecure();
     const [insTructor] = useInstructor();
-    console.log(isAdmin)
-    console.log(insTructor)
-
-
-
-    
     const hadleLogOut = () =>{
         logOut()
     }
@@ -31,29 +25,29 @@ const Navbar = () => {
             <li><NavLink to='/instructors'>Instructors</NavLink></li>
             <li><NavLink to='/class'>Classes</NavLink></li>
             <li><NavLink to='/login'>Login</NavLink></li>
-            {user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}
-            {isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
-            {insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}
-            {user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}
+            <li>{user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}</li>
+            <li>{isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}</li>
+            <li>{insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}</li>
+            <li>{user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}</li>
       </ul>
     </div>
     <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-            <li><NavLink to='/'>Home</NavLink></li>
+    <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/instructors'>Instructors</NavLink></li>
             <li><NavLink to='/class'>Classes</NavLink></li>
             <li><NavLink to='/login'>Login</NavLink></li>
-            {user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}
-            {isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}
-            {insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}
-            {user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}
+            <li>{user && <button onClick={hadleLogOut} className="cursor-pointer">LogOut</button>}</li>
+            <li>{isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}</li>
+            <li>{insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}</li>
+            <li>{user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}</li>
     </ul>
   </div>
   <div className="navbar-end">
     {
-        user? <img src={user.photoURL} alt="" /> : ''
+        user? <img src={user.photoURL} alt="image" className="w-12 rounded-full"/> : ''
     }
   </div>
 </div>

@@ -46,7 +46,6 @@ const provider = new GoogleAuthProvider();
             if(loaggedUser){
                 axios.post('http://localhost:5000/jwt', {email: loaggedUser.email})
                 .then(data =>{
-                    console.log(data.data)
                     localStorage.setItem('access-token', data.data)
                     setLoader(false)
                 })

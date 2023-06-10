@@ -37,7 +37,7 @@ const Login = () => {
     googleSignIn()
     .then(data =>{
       const email = data.user.email;
-      axiosSecure.post('/user',{email : email,})
+      axiosSecure.post('/user',{email : email, image:data.user.photoURL , name: data.user.displayName})
       .then(res =>{
           console.log(res)
           navigate(from, {replace:true})

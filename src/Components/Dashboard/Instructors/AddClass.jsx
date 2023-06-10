@@ -1,5 +1,8 @@
+
 import { useContext } from "react";
 import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
+import Swal from "sweetalert2";
 import { imgUpload } from "../../../API/imgApi";
 import useAxiosSecure from "../../../API/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -8,12 +11,14 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 const AddClass = () => {
     const {user} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
+    const [loader, setLoader] = useState(false)
     const [imageName, setImageName] = useState('Upload image')
     const handleImageChange = image =>{
         setImageName(image.name)
     }
     const handleClassData = event =>{
         event.preventDefault()
+        setLoader(true)
         const form = event.target;
         const name = form.name.value;
         const image = form.image.files[0];
@@ -29,7 +34,22 @@ const AddClass = () => {
             const imgLink = data.data.display_url
             axiosSecure.post(`/addClass/${user?.email}`, {name : name,image : imgLink, 
                 instructorName : instructorName, instructorEmail : instructorEmail,
-                seats: seats,price : price, status: 'pending',})
+                seats: seats,price : price, status: 'pending', student: 0, instructorImage: user?.photoURL})
+                .then(res =>{
+                  form.reset()
+                  if(res.data.acknowledged){
+                    setImageName('Upload image')
+                    setLoader(false)
+                    Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Your class has been saved',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+                  }
+                  
+                })
         })
     }
     
@@ -59,7 +79,10 @@ const AddClass = () => {
                 <input type="text" name="instructorEmail" id="" className="bg-slate-200 py-2 pl-2" value={user?.email}  readOnly required/>
                 <input type="text" name="seats" id="" className="bg-slate-200 py-2 pl-2" placeholder="Enter Available seats" required/>
                 <input type="text" name="price" id="" className="bg-slate-200 py-2 pl-2" placeholder="Enter price" required />
-                <input type="submit" value="Add Class" name="" id="" className="bg-slate-200 py-2 pl-2" />
+                {
+                  loader?  <FaSpinner className="mx-auto text-3xl animate-spin text-red-500"></FaSpinner> : <input type="submit" value="Add Class" name="" id="" className="bg-slate-200 py-2 pl-2" />
+                }
+                
 
 
             

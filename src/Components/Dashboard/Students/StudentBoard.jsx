@@ -16,6 +16,7 @@ const StudentBoard = () => {
     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
       <li><NavLink to="/userDashboard/selectedClass">My Selected Classes</NavLink></li>
       <li><NavLink to="/userDashboard/enrolledClass">My Enrolled Classes</NavLink></li>
+      <li><NavLink to="/userDashboard/history">Payment history</NavLink></li>
     </ul>
   
   </div>

@@ -1,9 +1,10 @@
+import Popular from "../PopularClasses.jsx/Popular";
 
 
 const Home = () => {
     return (
         <div>
-            hello
+            <Popular></Popular>
         </div>
     );
 };
