@@ -22,11 +22,11 @@ const PaymentHistory = () => {
     if(loader){
         return <span className="loading loading-dots loading-lg  md:w-44"></span>
     }
-    if(classes.length === '0'){
+    if(classes.length == '0'){
         return <p className="text-center font-sans font-semibold text-4xl">Please payment first</p>
     }
     return (
-        <div className="grid gap-5">
+        <div className="grid gap-5 mt-16">
             {
                 classes.map(singleClass =>(<div key={singleClass._id} className="bg-slate-200 flex p-5 rounded-md  shadow-lg gap-10">
                     <p><b>Name: </b>{singleClass.name}</p>

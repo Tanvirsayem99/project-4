@@ -4,18 +4,29 @@ import useAxiosSecure from "../../API/useAxiosSecure";
 
 
 const AllInstructor = () => {
-    const [classes, setClasses] = useState([])
+    const [instructors, setInstructors] = useState([])
+    const [loading, setLoading] = useState(false)
     const [axiosSecure] = useAxiosSecure();
     useEffect(()=>{
+        setLoading(true)
         axiosSecure.get('/Allinstructors')
         .then(res =>{
-            setClasses(res.data)
+            if(res.data){
+                setLoading(false)
+                setInstructors(res.data)
+            }
         })
     },[])
+    if(loading){
+        return <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
+    }
+    if(instructors.length === '0'){
+        return <p className="text-center font-sans font-semibold text-4xl">No classes available</p>
+    }
     return (
-        <div className="grid gap-5">
+        <div className="grid gap-5 pt-20">
             {
-                classes?.map(singleClass =>(<div key={singleClass._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg">
+                instructors?.map(singleClass =>(<div key={singleClass._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg">
                     <img src={singleClass.image} alt="" className="w-16 p-1" />
                     <p><b>Name: </b>{singleClass.name}</p>
                     <p><b>Email: </b>{singleClass.email}</p>

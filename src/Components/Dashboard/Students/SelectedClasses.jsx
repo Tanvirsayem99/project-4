@@ -11,36 +11,34 @@ const stripePromise = loadStripe(`${import.meta.env.VITE_stripe}`);
 
 const SelectedClasses = () => {
     const[exactId, setExactId] = useState('')
-    const [loading, setLoading] = useState(false)
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
     
     
-    const {data: items =[], refetch} = useQuery(['users', user?.email], async ()=>{
-        setLoading(true)
+    const {data: items =[],  refetch, isLoading} = useQuery(['email', user?.email], async ()=>{
         const res = await axiosSecure.get(`/selected/${user?.email}`)
-        if(res.data){
-            setLoading(false)
             return res.data;
-        }
+        
     })
+    const handleClose =() =>{
+        refetch()
+    }
     if(loader){
         return <span className="loading loading-dots loading-lg  md:w-44"></span>
     }
     const handleDelete = id =>{
         axiosSecure.delete(`/delete/${id}`)
         refetch();
-        refetch()
     }
-    if(loading){
+    if(isLoading){
         return <span className="loading loading-dots loading-lg  md:w-44"></span>
     }
     if(items.length == '0'){
-        return <p className="text-center font-sans font-semibold text-4xl">Please Add Item First</p>
+        return <p className="text-center font-sans font-semibold text-4xl mt-16 md:mt-0">Please Add Item First</p>
     }
     
     return (
-        <div className="grid gap-10">
+        <div className="grid gap-10 mt-16">
             {
                 items.map(item =>(<div key={item._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg h-20">
                     <img src={item.image} alt="" className="w-16 p-1" />
@@ -54,9 +52,9 @@ const SelectedClasses = () => {
                       <div className="modal">
                       <div className="modal-box">
                       <h3 className="font-bold text-lg">Payment Now</h3>
-                     <Elements stripe={stripePromise} ><CheckoutForm item={item} exactId={exactId}></CheckoutForm></Elements>
+                     <Elements stripe={stripePromise} ><CheckoutForm item={item} refetch={refetch} exactId={exactId}></CheckoutForm></Elements>
                    <div className="modal-action">
-                    <label htmlFor="my_modal_6" className="btn">Close!</label>
+                    <label htmlFor="my_modal_6" className="btn" onClick={handleClose}>Close!</label>
                     </div>
                   </div>
                </div>

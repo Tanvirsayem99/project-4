@@ -5,8 +5,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosSecure from "../../API/useAxiosSecure";
+
 const Login = () => {
   const [axiosSecure] = useAxiosSecure();
+  const [loginErr, setLoginErr] = useState('')
     const {googleSignIn, loginUser} = useContext(AuthContext)
     const [show, setShow] = useState(true);
     const [spin, setSpin] = useState(false)
@@ -29,7 +31,8 @@ const Login = () => {
         navigate(from, {replace:true})
     })
     .catch(err =>{
-        console.log(err)
+      setLoginErr(err.message.split(' ')[2].split('/')[1].split(')')[0])
+        setSpin(false)
     })
   };
   const handleGoogle = () =>{
@@ -97,6 +100,7 @@ const Login = () => {
             }
             
           </div>
+          <p className="text-red-500">{loginErr && loginErr}</p>
           <p className="mt-5">Don't have account? <span>please <Link to="/register">Register</Link></span></p>
         </div>
         {errors.exampleRequired && <span>This field is required</span>}

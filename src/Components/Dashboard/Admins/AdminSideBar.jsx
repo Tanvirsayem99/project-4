@@ -15,8 +15,9 @@ const AdminSideBar = () => {
     <ul className="menu p-4 w-80 h-full bg-orange-300 text-base-content">
     
       <h1 className="text-center text-2xl">Welcome to Admin Dashboard</h1>
+      <li><NavLink to='/adminDashboard'>Manage Users</NavLink></li>
       <li><NavLink to='/adminDashboard/class'>Manage Classes</NavLink></li>
-      <li><NavLink to='/adminDashboard/adUsers'>Manage Users</NavLink></li>
+      
     </ul>
   
   </div>

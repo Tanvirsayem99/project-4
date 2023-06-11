@@ -16,7 +16,7 @@ const InstructorBoard = () => {
     <ul className="menu p-4 w-80 h-full bg-orange-300 text-base-content">
     
       <h1 className="text-center text-2xl">Welcome to Instructor Dashboard</h1>
-      <li><NavLink to='/instructorDashboard/addclass'>Add a Class</NavLink></li>
+      <li><NavLink to='/instructorDashboard'>Add a Class</NavLink></li>
       <li><NavLink to='/instructorDashboard/myclass'>My Classes</NavLink></li>
             
     </ul>

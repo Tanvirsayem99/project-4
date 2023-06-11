@@ -13,19 +13,30 @@ const AllClasses = () => {
     const [classes, setClasses] = useState([])
     const {user} = useContext(AuthContext)
     const [isAdmin] = useAdminSecure()
+    const [loading, setLoading] = useState(false)
     const [insTructor] = useInstructor()
     const [axiosSecure] = useAxiosSecure()
     const navigate = useNavigate()
     const location = useLocation()
     useEffect(()=>{
+        setLoading(true)
         axiosSecure.get('/approvedClasses')
         .then(res =>{
-            setClasses(res.data)
+            if(res.data){
+                setLoading(false)
+                setClasses(res.data)
+            }
         })
     },[])
+    if(loading){
+        return <span className="loading loading-dots loading-lg  md:w-44"></span>
+    }
+    if(classes.length === '0'){
+        return <p className="text-center font-sans font-semibold text-4xl">No classes available</p>
+    }
     
     const handleBookings = item =>{
-        const {name, image, instructorName, price, seats, _id, student} = item;
+        const {name, image, instructorName, instructorEmail, price, seats, _id, student} = item;
         if(!user){
             Swal.fire({
                 title: 'Please Login first?',
@@ -43,11 +54,22 @@ const AllClasses = () => {
 
         }
         else{
-            axiosSecure.post('/bookings',{menuItem: _id, name, image, instructorName, price, student, seats, email: user.email})
+            axiosSecure.post('/bookings',{menuItem: _id, name, image, instructorName, instructorEmail, price, student, seats, email: user.email})
+            .then(res =>{
+                if(res.data){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Successfully booked this class',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            })
         }
     }
     return (
-        <div className="grid grid-cols-3 gap-5 w-11/12 mx-auto">
+        <div className="grid grid-cols-3 gap-5 w-11/12 mx-auto pt-20">
             {
                 classes?.map(singleClass =>(<div key={singleClass._id} className={`${singleClass.seats <= 0? 'bg-red-500' : 'bg-neutral-300' } w-full shadow-md`}>
                     <img src={singleClass.image} alt="" className="p-2 h-96 w-full" />

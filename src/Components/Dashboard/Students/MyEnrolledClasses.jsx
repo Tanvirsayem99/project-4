@@ -29,7 +29,7 @@ const MyEnrolledClasses = () => {
     }
     
     return (
-        <div className="grid gap-5">
+        <div className="grid gap-5 mt-16">
             {
                 items.map((item) =>(<div key={item._id} className="flex gap-10 h-24 md:w-[700px] justify-center bg-red-200 items-center px-5 rounded-lg">
                     

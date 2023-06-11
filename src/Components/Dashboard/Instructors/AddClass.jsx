@@ -1,4 +1,5 @@
 
+import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
@@ -16,6 +17,16 @@ const AddClass = () => {
     const handleImageChange = image =>{
         setImageName(image.name)
     }
+    const {data: instructors =[]} = useQuery(['users'], async ()=>{
+      const res = await axiosSecure.get(`/instructorsData/${user?.email}`)
+        return res.data;
+  });
+  
+
+  let updateClass = instructors.class + 1 ;
+  
+  
+
     const handleClassData = event =>{
         event.preventDefault()
         setLoader(true)
@@ -31,7 +42,14 @@ const AddClass = () => {
         
         
         imgUpload(image).then(data =>{
-            const imgLink = data.data.display_url
+            const imgLink = data.data.display_url;
+            if(instructors){
+              axiosSecure.put(`/instructors/${user?.email}`,{instructorName: user?.displayName, email: user?.email,  class: updateClass})
+            }
+            else{
+              axiosSecure.put(`/instructors/${user?.email}`,{instructorName: user?.displayName, email: user?.email,  class: 1})
+            }
+            
             axiosSecure.post(`/addClass/${user?.email}`, {name : name,image : imgLink, 
                 instructorName : instructorName, instructorEmail : instructorEmail,
                 seats: seats,price : price, status: 'pending', student: 0, instructorImage: user?.photoURL})

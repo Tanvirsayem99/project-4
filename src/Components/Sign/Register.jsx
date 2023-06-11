@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosSecure from "../../API/useAxiosSecure";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const Register = () => {
+  const navigate = useNavigate()
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
     const [axiosSecure] = useAxiosSecure()
@@ -32,6 +34,14 @@ const Register = () => {
             updateUser(name, image)
             .then(data =>{
                 axiosSecure.post('/user',{email : Email, image:image , name: name})
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Register completed',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+                navigate('/')
                 
             })
 

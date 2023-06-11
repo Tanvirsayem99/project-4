@@ -1,3 +1,4 @@
+import PopularInstructor from "../Popular/PopularInstructor";
 import Popular from "../PopularClasses.jsx/Popular";
 import Banner from "./Banner";
 
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Popular></Popular>
+            <PopularInstructor></PopularInstructor>
         </div>
     );
 };

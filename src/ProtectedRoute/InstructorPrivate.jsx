@@ -9,7 +9,7 @@ const InstructorPrivate = ({children}) => {
     const [insTructor, isInstructorLoading] = useInstructor();
     const location = useLocation();
     if(loader || isInstructorLoading){
-        return <span className="loading loading-dots loading-lg text-center absolute left-2/4 top-52  md:w-44   mx-auto"></span>
+        return <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
     }
     if(user && insTructor){
         return children

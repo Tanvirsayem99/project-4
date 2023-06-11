@@ -17,14 +17,16 @@ import Home from "../Components/Home/Home";
 import Shared from "../Components/shared/Shared";
 import Login from "../Components/Sign/Login";
 import Register from "../Components/Sign/Register";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import AdminPrivate from "../ProtectedRoute/AdminPrivate";
 import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
-import PrivateRoute from "../ProtectedRoute/PrivateRoute";
+
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Shared></Shared>,
+      errorElement: <ErrorPage></ErrorPage>,
       children:[
         {
           path: '/',
@@ -32,23 +34,22 @@ import PrivateRoute from "../ProtectedRoute/PrivateRoute";
         },
         {
           path: '/class',
-          element: <PrivateRoute><AllClasses></AllClasses></PrivateRoute>
+          element: <AllClasses></AllClasses>
         },
         {
           path: '/instructors',
           element: <AllInstructor></AllInstructor>
         },
-        
       ],
     },
     {
         path: '/adminDashboard',
         element: <AdminPrivate><AdminSideBar></AdminSideBar></AdminPrivate>,
         children:[
-          // {
-          //   path: 'adminDashboard',
-          //   element: <p>hello</p>
-          // },
+          {
+            path: '/adminDashboard',
+            element: <AdminUsers></AdminUsers>
+          },
           {
             path: 'class',
             element: <AdminClasses></AdminClasses>
@@ -72,8 +73,8 @@ import PrivateRoute from "../ProtectedRoute/PrivateRoute";
         element: <InstructorPrivate><InstructorBoard></InstructorBoard></InstructorPrivate>,
         children:[
           {
-            path: 'addclass',
-            element: <AddClass></AddClass>
+            path: '/instructorDashboard',
+            element: <InstructorPrivate> <AddClass></AddClass></InstructorPrivate>
           },
           {
             path: 'myclass',
@@ -86,7 +87,7 @@ import PrivateRoute from "../ProtectedRoute/PrivateRoute";
         element: <StudentBoard></StudentBoard>,
         children:[
           {
-            path: 'selectedClass',
+            path: '/userDashboard',
             element: <SelectedClasses></SelectedClasses>
           },
           {
