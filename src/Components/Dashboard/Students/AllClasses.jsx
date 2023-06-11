@@ -13,13 +13,12 @@ const AllClasses = () => {
     const [classes, setClasses] = useState([])
     const {user} = useContext(AuthContext)
     const [isAdmin] = useAdminSecure()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [insTructor] = useInstructor()
     const [axiosSecure] = useAxiosSecure()
     const navigate = useNavigate()
     const location = useLocation()
     useEffect(()=>{
-        setLoading(true)
         axiosSecure.get('/approvedClasses')
         .then(res =>{
             if(res.data){

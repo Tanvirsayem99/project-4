@@ -7,10 +7,9 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 
 const AdminUsers = () => {
     const {user} = useContext(AuthContext)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure()
     const {data: users =[], refetch} = useQuery(['users'], async ()=>{
-          setLoading(true)
         const res = await axiosSecure.get('/allUsers')
         if(res.data){
           setLoading(false)

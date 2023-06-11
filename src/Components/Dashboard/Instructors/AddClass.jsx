@@ -25,7 +25,7 @@ const AddClass = () => {
 
   let updateClass = instructors.class + 1 ;
   
-  
+
 
     const handleClassData = event =>{
         event.preventDefault()
@@ -44,10 +44,10 @@ const AddClass = () => {
         imgUpload(image).then(data =>{
             const imgLink = data.data.display_url;
             if(instructors){
-              axiosSecure.put(`/instructors/${user?.email}`,{instructorName: user?.displayName, email: user?.email,  class: updateClass})
+              axiosSecure.put(`/instructors/${user?.email}`,{instructorName: user?.displayName, image:user?.photoURL, email: user?.email,  class: updateClass})
             }
             else{
-              axiosSecure.put(`/instructors/${user?.email}`,{instructorName: user?.displayName, email: user?.email,  class: 1})
+              axiosSecure.put(`/instructors/${user?.email}`,{instructorName: user?.displayName, image:user?.photoURL, email: user?.email,  class: 1})
             }
             
             axiosSecure.post(`/addClass/${user?.email}`, {name : name,image : imgLink, 

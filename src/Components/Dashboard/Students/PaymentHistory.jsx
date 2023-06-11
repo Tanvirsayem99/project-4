@@ -6,10 +6,9 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const PaymentHistory = () => {
     const {user, loader} = useContext(AuthContext)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure();
     const {data: classes =[], refetch} = useQuery(['classes', user?.email], async ()=>{
-        setLoading(true)
         const res = await axiosSecure.get(`/history/${user?.email}`)
         if(res.data){
             setLoading(false)

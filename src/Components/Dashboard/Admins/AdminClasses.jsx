@@ -8,11 +8,11 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const AdminClasses = () => {
     const {user, loader} = useContext(AuthContext);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure();
     const [feedId, setFeedId] = useState('')
     const {data: classes =[], refetch} = useQuery(['classes'], async ()=>{
-        setLoading(true)
+        // setLoading(true)
         const res = await axiosSecure.get(`/allClasses/${user?.email}`)
         if(res.data){
           setLoading(false)

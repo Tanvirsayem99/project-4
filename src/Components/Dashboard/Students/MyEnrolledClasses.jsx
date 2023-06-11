@@ -6,11 +6,10 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const MyEnrolledClasses = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure();
     const {data: items =[], refetch} = useQuery(['users', user?.email], async ()=>{
-        setLoading(true)
         const res = await axiosSecure.get(`/enrolledItem/${user?.email}`)
         if(res.data){
             setLoading(false)

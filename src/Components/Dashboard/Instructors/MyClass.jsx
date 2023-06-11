@@ -8,12 +8,11 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const MyClass = () => {
     const {user, loader} = useContext(AuthContext);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure();
     const [upid, setUpId] = useState('')
 
     const {data: classes =[], refetch} = useQuery(['classes'], async ()=>{
-        setLoading(true)
         const res = await axiosSecure.get(`/instructorClasses/${user?.email}`)
         if(res.data){
           setLoading(false)

@@ -10,7 +10,7 @@ const Popular = () => {
     })
     console.log(classes)
     return (
-        <div className="grid grid-cols-3 gap-10 my-10">
+        <div className="grid md:grid-cols-3 gap-10 my-10">
             {
                 classes.map(singleClass =>(<div key={singleClass._id} className=" Box p-3">
                     <img src={singleClass.image} alt="" className="w-full h-64" />
