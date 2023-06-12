@@ -43,7 +43,7 @@ const provider = new GoogleAuthProvider();
             
             setUser(loaggedUser)
             if(loaggedUser){
-                axios.post('http://localhost:5000/jwt', {email: loaggedUser.email})
+                axios.post('https://assignment-12-server-tanvirsayem99.vercel.app/jwt', {email: loaggedUser.email})
                 .then(data =>{
                     localStorage.setItem('access-token', data.data)
                     setLoader(false)
