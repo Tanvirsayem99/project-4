@@ -3,7 +3,7 @@ const Footer = () => {
     return (
         <div className="relative">
             <footer className="footer footer-center mt-5 p-10 bg-base-200 text-base-content rounded">
-  <div className="grid grid-flow-col gap-4">
+  <div className="md:absolute relative md:left-5 md:top-5 text-2xl font-semibold">
     SUMMER SPORTS CAMP
   </div> 
   <div>

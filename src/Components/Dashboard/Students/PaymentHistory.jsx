@@ -32,7 +32,7 @@ const PaymentHistory = () => {
                     <p><b>Name: </b>{singleClass.name}</p>
                     <p><b>Price: </b>{singleClass.price}</p>
                     <p><b>date: </b>{new Date(singleClass.date).getDate()}/{new Date(singleClass.date).getMonth()+1}/{new Date(singleClass.date).getFullYear()}</p>
-                    <p><b>Time: </b>{new Date(singleClass.date).getHours() >12 && new Date(singleClass.date).getHours()-12 }:{new Date(singleClass.date).getMinutes()}{new Date(singleClass.date).getHours() >=12 ? '  PM': 'AM'}</p>
+                    <p><b>Time: </b>{new Date(singleClass.date).getHours()  }:{new Date(singleClass.date).getMinutes()}</p>
                     
                 </div>))
             }

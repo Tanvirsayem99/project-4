@@ -37,7 +37,7 @@ const AdminUsers = () => {
                 refetch();
             })
     }
-    
+    const theme = localStorage.getItem('theme')
     return (
         <div className='mt-16'>
             
@@ -57,9 +57,9 @@ const AdminUsers = () => {
     <tbody>
       
         {
-                users?.map((singleUser, index )=>(<tr  key={singleUser._id} >
+                users?.map((singleUser, index )=>(<tr  key={singleUser._id}>
                         <th>{index + 1}</th>
-        <td className='indicator'>{singleUser?.email}{ user?.email === singleUser.email && <p className='indicator-item badge badge-primary'>Me</p>}</td>
+        <td className={`indicator ${theme === 'dark' && 'text-white'} `}>{singleUser?.email}{ user?.email === singleUser.email && <p className='indicator-item badge badge-primary'>Me</p>}</td>
         <td>{singleUser?.role? singleUser.role : 'student'}</td>
         <td className="flex gap-5">
         <div className="btn btn-success" disabled={singleUser.role === 'admin' || singleUser.role === 'instructor' && true} onClick={() =>handleAdmin(singleUser._id)}>Make admin</div>

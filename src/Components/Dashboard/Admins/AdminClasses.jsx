@@ -101,7 +101,7 @@ const AdminClasses = () => {
             <td>{singleClass.seats}</td>
             <td><div onClick={()=> handleAprrove(singleClass._id)} disabled={singleClass?.status === 'denied' || singleClass?.status === 'approved' && true} className="btn btn-info">Approve</div></td>
             <td><div onClick={()=> handleDenied(singleClass._id)} disabled={singleClass?.status === 'denied' || singleClass?.status === 'approved' &&  true} className="btn btn-info">Deny</div></td>
-            <td><label htmlFor="my_modal_6" className="btn" onClick={()=>setFeedId(singleClass._id)}>Feedback</label></td>
+            <td><label htmlFor="my_modal_6" className="btn bg-white" onClick={()=>setFeedId(singleClass._id)}>Feedback</label></td>
         </tr>))
       } 
     </tbody>
