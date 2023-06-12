@@ -12,7 +12,7 @@ const PrivateRoute = ({children}) => {
     if(loader || isInstructorLoading){
         return <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
     }
-    if(!insTructor && !admin){
+    if(!insTructor && !admin && user){
         return children
     }
     return (
