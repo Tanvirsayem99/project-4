@@ -1,9 +1,10 @@
-
+import logo from '../../../public/vite.png'
 const Footer = () => {
     return (
         <div className="relative">
             <footer className="footer footer-center mt-5 p-10 bg-base-200 text-base-content rounded">
-  <div className="md:absolute relative md:left-5 md:top-5 text-2xl font-semibold">
+  <div className="md:absolute relative md:left-5 md:top-5 text-2xl font-semibold flex">
+  <img src={logo} alt="" className="w-10 h-10"/>
     SUMMER SPORTS CAMP
   </div> 
   <div>

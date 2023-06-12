@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import useAdminSecure from "../../API/useAdminSecure";
 import useInstructor from "../../API/useInstructor";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import logo from '../../../public/vite.png'
 
 const Navbar = () => {
   const {logOut, user} = useContext(AuthContext);
@@ -38,6 +38,7 @@ const Navbar = () => {
             
       </ul>
     </div>
+    <img src={logo} alt="" className="w-10 h-10"/>
     <a className="btn btn-ghost normal-case text-xl">SUMMER SPORTS CAMP</a>
   </div>
   <div className="navbar-center hidden lg:flex">
