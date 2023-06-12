@@ -45,7 +45,7 @@ const Home = () => {
             <Banner></Banner>
             <Popular theme={theme}></Popular>
             <PopularInstructor theme={theme}></PopularInstructor>
-            <Services></Services>
+            <Services theme={theme}></Services>
             
         </div>
     );
