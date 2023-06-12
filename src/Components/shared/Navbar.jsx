@@ -62,7 +62,7 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     {
-        user? <img src={user.photoURL} alt="image" className="w-12 rounded-full"/> : ''
+        user? <img referrerPolicy="no-referrer" src={user.photoURL} alt="image" className="w-12 h-12 rounded-full"/> : ''
     }
     
   </div>

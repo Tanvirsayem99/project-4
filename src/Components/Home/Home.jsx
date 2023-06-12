@@ -43,7 +43,7 @@ const Home = () => {
             </div>
             <Banner></Banner>
             <Popular theme={theme}></Popular>
-            <PopularInstructor></PopularInstructor>
+            <PopularInstructor theme={theme}></PopularInstructor>
         </div>
     );
 };
