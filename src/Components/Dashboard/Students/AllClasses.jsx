@@ -27,6 +27,7 @@ const AllClasses = () => {
             }
         })
     },[])
+    const theme = localStorage.getItem('theme')
     if(loading){
         return <span className="loading loading-dots loading-lg  md:w-44"></span>
     }
@@ -70,7 +71,7 @@ const AllClasses = () => {
     return (
         <div className="grid md:grid-cols-3 gap-5 w-11/12 mx-auto pt-20">
             {
-                classes?.map(singleClass =>(<div key={singleClass._id} className={`${singleClass.seats <= 0? 'bg-red-500' : 'bg-neutral-300'  } w-full shadow-md `}>
+                classes?.map(singleClass =>(<div key={singleClass._id} className={`${singleClass.seats <= 0? 'bg-red-500' : 'bg-neutral-300'  } ${theme === 'dark' && 'text-black bg-white shadow shadow-white'} w-full shadow-md `}>
                     <img src={singleClass.image} alt="" className="p-2 h-96 w-full" />
                     <div className="grid mx-auto text-center">
                     <p><b>Class Name: </b>{singleClass.name}</p>

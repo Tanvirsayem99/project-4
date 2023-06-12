@@ -20,6 +20,7 @@ import Register from "../Components/Sign/Register";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import AdminPrivate from "../ProtectedRoute/AdminPrivate";
 import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
+import PrivateRoute from "../ProtectedRoute/PrivateRoute";
 
 
  export const router = createBrowserRouter([
@@ -84,7 +85,7 @@ import InstructorPrivate from "../ProtectedRoute/InstructorPrivate";
     },
     {
         path: '/userDashboard',
-        element: <StudentBoard></StudentBoard>,
+        element: <PrivateRoute><StudentBoard></StudentBoard></PrivateRoute>,
         children:[
           {
             path: '/userDashboard',

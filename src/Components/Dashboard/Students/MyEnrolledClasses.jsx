@@ -26,11 +26,12 @@ const MyEnrolledClasses = () => {
     if(items.length == '0'){
         return <p className="text-center font-sans font-semibold text-4xl">Please Enroll First</p>
     }
+    const theme = localStorage.getItem('theme')
     
     return (
         <div className="grid gap-5 mt-16">
             {
-                items.map((item) =>(<div key={item._id} className="flex gap-10 h-24 md:w-[700px] justify-center bg-red-200 items-center px-5 rounded-lg">
+                items.map((item) =>(<div key={item._id} className={`flex gap-10 h-24 md:w-[700px] justify-center ${theme === 'dark' ? 'bg-black shadow text-white shadow-white' : 'bg-red-200'} items-center px-5 rounded-lg`}>
                     
                     <img src={item.image} alt="" className="w-16 p-1" />
                     <p><b>Name: </b>{item.name}</p>

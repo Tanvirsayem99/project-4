@@ -36,11 +36,12 @@ const SelectedClasses = () => {
     if(items.length == '0'){
         return <p className="text-center font-sans font-semibold text-4xl mt-16 md:mt-0">Please Add Item First</p>
     }
+    const theme = localStorage.getItem('theme')
     
     return (
         <div className="grid gap-10 mt-16">
             {
-                items.map(item =>(<div key={item._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg h-20">
+                items.map(item =>(<div key={item._id} className={`flex gap-10 ${theme === 'dark' ? 'bg-black text-white shadow shadow-white' : 'bg-red-200'} items-center px-5 rounded-lg h-20 `}>
                     <img src={item.image} alt="" className="w-16 p-1" />
                     <p><b>Name: </b>{item.name}</p>
                     <p><b>Price: </b>{item.price}</p>

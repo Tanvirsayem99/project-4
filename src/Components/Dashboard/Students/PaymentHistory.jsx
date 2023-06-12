@@ -24,10 +24,11 @@ const PaymentHistory = () => {
     if(classes.length == '0'){
         return <p className="text-center font-sans font-semibold text-4xl">Please payment first</p>
     }
+    const theme = localStorage.getItem('theme')
     return (
         <div className="grid gap-5 mt-16">
             {
-                classes.map(singleClass =>(<div key={singleClass._id} className="bg-slate-200 flex p-5 rounded-md  shadow-lg gap-10">
+                classes.map(singleClass =>(<div key={singleClass._id} className={`bg-slate-200 flex p-5 rounded-md  shadow-lg gap-10 ${theme === 'dark' && "text-black"}`}>
                     <p><b>Name: </b>{singleClass.name}</p>
                     <p><b>Price: </b>{singleClass.price}</p>
                     <p><b>date: </b>{new Date(singleClass.date).getDate()}/{new Date(singleClass.date).getMonth()+1}/{new Date(singleClass.date).getFullYear()}</p>
