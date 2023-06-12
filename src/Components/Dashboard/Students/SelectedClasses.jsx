@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import useAxiosSecure from "../../../API/useAxiosSecure";
+import useTile from "../../../API/useTitle";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import CheckoutForm from "./CheckoutForm";
 const stripePromise = loadStripe(`${import.meta.env.VITE_stripe}`);
 
 const SelectedClasses = () => {
+    useTile('SELECTED-CLASSES')
     const[exactId, setExactId] = useState('')
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()

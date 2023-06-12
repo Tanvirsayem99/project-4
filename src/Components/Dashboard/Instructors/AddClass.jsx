@@ -6,10 +6,12 @@ import { FaSpinner } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { imgUpload } from "../../../API/imgApi";
 import useAxiosSecure from "../../../API/useAxiosSecure";
+import useTile from "../../../API/useTitle";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const AddClass = () => {
+    useTile('ADD_CLASS')
     const {user} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
     const [loader, setLoader] = useState(false)

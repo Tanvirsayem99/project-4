@@ -1,7 +1,9 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useTile from "../../../API/useTitle";
 
 
 const InstructorBoard = () => {
+  useTile('INSTRUCTOR-DASHBOARD')
     return (
         <div>
             <div className="drawer lg:drawer-open">

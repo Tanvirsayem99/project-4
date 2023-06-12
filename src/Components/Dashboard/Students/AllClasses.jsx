@@ -6,10 +6,12 @@ import Swal from "sweetalert2";
 import useAdminSecure from "../../../API/useAdminSecure";
 import useAxiosSecure from "../../../API/useAxiosSecure";
 import useInstructor from "../../../API/useInstructor";
+import useTile from "../../../API/useTitle";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const AllClasses = () => {
+    useTile('ALL_CLASSES')
     const [classes, setClasses] = useState([])
     const {user} = useContext(AuthContext)
     const [isAdmin] = useAdminSecure()

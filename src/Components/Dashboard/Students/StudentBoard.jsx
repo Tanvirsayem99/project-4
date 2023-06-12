@@ -1,7 +1,9 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useTile from "../../../API/useTitle";
 
 
 const StudentBoard = () => {
+  useTile('STUDENT-DASHBOARD')
   const theme = localStorage.getItem('theme')
     return (
         <div>

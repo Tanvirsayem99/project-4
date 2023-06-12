@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../API/useAxiosSecure";
+import useTile from "../../../API/useTitle";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const PaymentHistory = () => {
+    useTile('PAYMENT-HISTORY')
     const {user, loader} = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure();

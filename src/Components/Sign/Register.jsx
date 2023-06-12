@@ -6,7 +6,9 @@ import { FaSpinner } from 'react-icons/fa';
 import useAxiosSecure from "../../API/useAxiosSecure";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useTile from "../../API/useTitle";
 const Register = () => {
+  useTile('REGISTER')
   const navigate = useNavigate()
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);

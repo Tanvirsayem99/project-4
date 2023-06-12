@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import useAxiosSecure from '../../../API/useAxiosSecure'
+import useTile from '../../../API/useTitle';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 
 
 const AdminUsers = () => {
+  useTile('ALL_USERS')
     const {user} = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure()

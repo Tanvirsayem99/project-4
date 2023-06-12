@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useContext } from "react";
 import useAxiosSecure from "../../../API/useAxiosSecure";
+import useTile from "../../../API/useTitle";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const MyEnrolledClasses = () => {
+    useTile('ENROLLED-CLASSES')
     const [loading, setLoading] = useState(true)
     const {user, loader} = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure();

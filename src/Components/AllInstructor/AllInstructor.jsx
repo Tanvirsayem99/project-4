@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import useAxiosSecure from "../../API/useAxiosSecure";
+import useTile from "../../API/useTitle";
 
 
 const AllInstructor = () => {
+    useTile('ALL_INSTRUCTORS')
     const [instructors, setInstructors] = useState([])
     const [loading, setLoading] = useState(false)
     const [axiosSecure] = useAxiosSecure();

@@ -3,10 +3,12 @@ import { useState } from "react";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../API/useAxiosSecure";
+import useTile from "../../../API/useTitle";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const MyClass = () => {
+  useTile('MY_CLASS')
     const {user, loader} = useContext(AuthContext);
     const [loading, setLoading] = useState(true)
     const [axiosSecure] = useAxiosSecure();

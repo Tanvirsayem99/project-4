@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useTile from "../../API/useTitle";
 import PopularInstructor from "../Popular/PopularInstructor";
 import Popular from "../PopularClasses.jsx/Popular";
 import Banner from "./Banner";
@@ -6,6 +7,7 @@ import Services from "./Services";
 
 
 const Home = () => {
+    useTile('HOME')
     const [theme, setTheme] = useState('')
     const [clicker, setClicker] = useState('')
     const handleTheme = theme =>{

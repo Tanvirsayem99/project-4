@@ -1,6 +1,8 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useTile from "../../../API/useTitle";
 
 const AdminSideBar = () => {
+  useTile('ADMIN_DASHBOARD')
   return (
     <div>
         <div className="drawer lg:drawer-open">

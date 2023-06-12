@@ -5,8 +5,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosSecure from "../../API/useAxiosSecure";
+import useTile from "../../API/useTitle";
 
 const Login = () => {
+  useTile('LOGIN')
   const [axiosSecure] = useAxiosSecure();
   const [loginErr, setLoginErr] = useState('')
     const {googleSignIn, loginUser} = useContext(AuthContext)
