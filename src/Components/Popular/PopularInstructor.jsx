@@ -18,7 +18,7 @@ const PopularInstructor = ({theme}) => {
                 <h1 className="text-4xl">Popular Instructors</h1>
                 <p>-------------------------- O -------------------------</p>
             </div>
-        <div className="grid md:grid-cols-3 gap-5">
+        <div  className="grid md:grid-cols-3 gap-5">
             {
                 sayem?.map(singleInstructor =>(<div key={singleInstructor._id} className="relative grid gap-5 p-3 bg-transparent">
                     

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PopularInstructor from "../Popular/PopularInstructor";
 import Popular from "../PopularClasses.jsx/Popular";
 import Banner from "./Banner";
+import Services from "./Services";
 
 
 const Home = () => {
@@ -44,6 +45,8 @@ const Home = () => {
             <Banner></Banner>
             <Popular theme={theme}></Popular>
             <PopularInstructor theme={theme}></PopularInstructor>
+            <Services></Services>
+            
         </div>
     );
 };
