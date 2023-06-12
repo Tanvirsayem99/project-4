@@ -42,7 +42,6 @@ const Login = () => {
       const email = data.user.email;
       axiosSecure.post('/user',{email : email, image:data.user.photoURL , name: data.user.displayName})
       .then(res =>{
-          console.log(res)
           navigate(from, {replace:true})
       })
       .catch(err => setSpin(false))

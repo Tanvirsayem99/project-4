@@ -73,6 +73,9 @@ const MyClass = () => {
         <th>Price</th>
         <th>Seats</th>
         <th>Enrolled student</th>
+        {
+
+        }
         <th>Feedback</th>
         <th>Action</th>
       </tr>
@@ -87,7 +90,10 @@ const MyClass = () => {
             <td>{singleClass.price}</td>
             <td>{singleClass.seats}</td>
             <td>{singleClass?.student ? singleClass.student : '0'}</td>
-            <td>{singleClass?.feedback ? singleClass.feedback : ''}</td>
+            {
+              singleClass.status === 'approved' || singleClass.seats === 'pending' ? <td>{singleClass?.feedback ? singleClass.feedback : ''}</td> : <td></td>
+            }
+            
             <td><button> <label htmlFor="my_modal_6" className="btn" onClick={()=>setUpId(singleClass._id)}>update</label></button></td>
         </tr>))
       }

@@ -4,10 +4,7 @@ const Footer = () => {
         <div className="relative">
             <footer className="footer footer-center mt-5 p-10 bg-base-200 text-base-content rounded">
   <div className="grid grid-flow-col gap-4">
-    <a className="link link-hover">About us</a> 
-    <a className="link link-hover">Contact</a> 
-    <a className="link link-hover">Jobs</a> 
-    <a className="link link-hover">Press kit</a>
+    SUMMER SPORTS CAMP
   </div> 
   <div>
     <h1>contact</h1>

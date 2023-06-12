@@ -24,10 +24,10 @@ const AllInstructor = () => {
         return <p className="text-center font-sans font-semibold text-4xl">No classes available</p>
     }
     return (
-        <div className="grid gap-5 pt-20">
+        <div className="grid gap-5 pt-20 ">
             {
-                instructors?.map(singleClass =>(<div key={singleClass._id} className="flex gap-10 bg-red-200 items-center px-5 rounded-lg">
-                    <img src={singleClass.image} alt="" className="w-16 p-1" />
+                instructors?.map(singleClass =>(<div key={singleClass._id} className="md:flex gap-10 text-center md:text-left bg-slate-50 w-11/12 mx-auto h-32  shadow-lg items-center md:h-20 px-5 rounded-lg">
+                    <img src={singleClass.image} alt="" className="w-16 h-16 md:mx-0 mx-auto rounded-full p-1" />
                     <p><b>Name: </b>{singleClass.name}</p>
                     <p><b>Email: </b>{singleClass.email}</p>
                     <div>

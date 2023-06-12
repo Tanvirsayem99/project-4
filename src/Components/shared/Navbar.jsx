@@ -1,3 +1,4 @@
+
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import useAdminSecure from "../../API/useAdminSecure";
@@ -12,6 +13,7 @@ const Navbar = () => {
     const hadleLogOut = () =>{
         logOut()
     }
+   
     return (
         <div className="">
             <div className="navbar md:w-[91.7%]  bg-orange-500 bg-opacity-40 text-black md:text-white fixed z-10">
@@ -31,9 +33,12 @@ const Navbar = () => {
             <li>{isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}</li>
             <li>{insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}</li>
             <li>{user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}</li>
+            
+            
+            
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <a className="btn btn-ghost normal-case text-xl">SUMMER SPORTS CAMP</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -47,12 +52,19 @@ const Navbar = () => {
             <li>{isAdmin && <NavLink to='/adminDashboard'>Dashboard</NavLink>}</li>
             <li>{insTructor && <NavLink to='/instructorDashboard'>Dashboard</NavLink>}</li>
             <li>{user && !isAdmin && !insTructor ? <NavLink to='/userDashboard'>Dashboard</NavLink> : ''}</li>
+            
+
+
+
+
+
     </ul>
   </div>
   <div className="navbar-end">
     {
         user? <img src={user.photoURL} alt="image" className="w-12 rounded-full"/> : ''
     }
+    
   </div>
 </div>
         </div>
